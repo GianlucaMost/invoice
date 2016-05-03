@@ -7,8 +7,8 @@ public class Mechaniker extends Mitarbeiter {
 
     private int stundenlohn;
 
-    public Mechaniker(int mitarbeiternr, int stundenlohn) {
-        super(mitarbeiternr);
+    public Mechaniker(int mitarbeiternr, String vorname, String nachname, int stundenlohn) {
+        super(mitarbeiternr, vorname, nachname);
         this.stundenlohn = stundenlohn;
     }
 
