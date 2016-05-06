@@ -1,3 +1,5 @@
+package persistence;
+
 import java.util.Arrays;
 
 import javax.xml.bind.JAXBContext;
