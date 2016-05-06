@@ -47,4 +47,8 @@ public class Kunde extends Mensch implements KundeInterface {
     public void setAutoList(List<Auto> autoList) {
         this.autoList = autoList;
     }
+
+    public void addAuto(Auto car) {
+        this.autoList.add(car);
+    }
 }

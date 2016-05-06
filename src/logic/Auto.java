@@ -11,9 +11,6 @@ public class Auto {
     private String typ;
     private Kunde kunde;
 
-    public Auto() {
-    }
-
     public Auto(String kennzeichen, String fahrgestellnr, String marke, String typ, Kunde kunde) {
         this.kennzeichen = kennzeichen;
         this.fahrgestellnr = fahrgestellnr;
