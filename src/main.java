@@ -11,10 +11,10 @@ import java.util.List;
 public class main {
     public static void main(String [] args) {
 
-      //  Kunde kunde = new Kunde("Mustermann", "Max", 123, "Musterstr.");
-      //  Auto car = new Auto("", "", "", "", kunde);
+        Kunde kunde = new Kunde("Mustermann", "Max", 123, "Musterstr.");
+        Auto car = new Auto("", "", "", "", kunde);
+        kunde.addAuto(car);
 
-      //  kunde.addAuto(car);
 
         try {
             GUI window = new GUI();

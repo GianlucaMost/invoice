@@ -11,5 +11,6 @@ public interface KundeInterface {
     public String getAdresse();
     public void setAdresse(String adresse);
     public List<Auto> getAutoList();
-    public void setAutoList(List<Auto> autoList);
+//    public void setAutoList(List<Auto> autoList);
+    public void addAuto(Auto car);
 }

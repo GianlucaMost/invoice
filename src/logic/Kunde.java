@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ public class Kunde extends Mensch implements KundeInterface {
 
     private int kundennr;
     private String adresse;
-    private List <Auto> autoList;
+    private List <Auto> autoList = new ArrayList<>();
 
     public Kunde(String name, String vorname, int kundennr, String adresse, List<Auto> autoList) {
         super(name, vorname);
@@ -44,9 +45,11 @@ public class Kunde extends Mensch implements KundeInterface {
         return autoList;
     }
 
+/*
     public void setAutoList(List<Auto> autoList) {
         this.autoList = autoList;
     }
+*/
 
     public void addAuto(Auto car) {
         this.autoList.add(car);
