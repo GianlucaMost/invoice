@@ -1,5 +1,6 @@
 import logic.Auto;
 import logic.Kunde;
+import persistence.Datenhaltung;
 import ui.GUI;
 
 import javax.xml.bind.JAXBException;
