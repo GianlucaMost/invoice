@@ -17,6 +17,7 @@ public class Ersatzteil extends Rechnungsposition {
         this.anzahl = anzahl;
     }
 
+
     public int getNummer() {
         return nummer;
     }

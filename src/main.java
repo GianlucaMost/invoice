@@ -4,6 +4,11 @@ import persistence.Datenhaltung;
 import ui.GUI;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +24,9 @@ public class main {
         kunde.addAuto(car);
 */
         Datenhaltung.erstellen();
+        Datenhaltung.kundenAuslesen(123);
+		
+
 
         try {
             GUI window = new GUI();
