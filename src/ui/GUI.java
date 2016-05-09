@@ -69,7 +69,7 @@ public class GUI{
 		rechungErstellenBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				logic.Rechnung rechnung = new logic.Rechnung();
-				rechnung.print(daten);
+				rechnung.print(daten, ausgewaehlte);
 				
 			}
 		});

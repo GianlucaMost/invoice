@@ -1,16 +1,16 @@
 package logic;
 
-import java.awt.Font;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-import javax.swing.text.Document;
-import java.awt.Color;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
+import javax.swing.DefaultListModel;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import persistence.Datenhaltung;
+
 import java.time.LocalDateTime;
 
 
@@ -45,22 +45,63 @@ public class Rechnung {
         this.rechnungspositionList = rechnungspositionList;
     }
 
-    public void print(String[] daten) { 
-    	PrintWriter pWriter = null; 
-        try {   	
-            pWriter = new PrintWriter(new BufferedWriter(new FileWriter("/Users/fabianspruch/bezeichung"+ LocalDateTime.now() +".txt"))); 
-            for (int i = 0; i<daten.length; i++){
-            	pWriter.println(daten[i]);
-            	
-            }
-            JOptionPane.showMessageDialog(null,"Rechnung erstellt!");
-        } catch (IOException ioe) { 
-        	JOptionPane.showMessageDialog(null,"Rechnung nicht erstellt!");
-        } finally { 
-            if (pWriter != null){ 
-                pWriter.flush(); 
-                pWriter.close(); 
-            } 
-        } 
+    public void print(String[] daten, DefaultListModel<String> ausgewaehlte) { 
+System.out.println("Create Simple PDF file with blank Page");
+        
+        String fileName = "/Users/fabianspruch/"+LocalDateTime.now()+".pdf"; 
+        float gesamtPreis=0;
+        try{
+        
+        
+    
+        PDDocument doc = new PDDocument();
+        
+        PDPage page = new PDPage();
+        doc.addPage(page);
+        PDPageContentStream content = new PDPageContentStream(doc, page);
+        content.beginText();
+        content.setFont(PDType1Font.HELVETICA, 12);
+        content.moveTextPositionByAmount(30, 750);
+        content.drawString("An:");
+        content.newLine();
+        content.moveTextPositionByAmount(0, -30);
+        for (int i = 0; i<daten.length; i++){
+        content.drawString(daten[i]);
+        content.newLine();
+        content.moveTextPositionByAmount(0, -30);
+        }
+        content.endText();
+        
+        content.beginText();
+        content.moveTextPositionByAmount(30, 550);
+        content.drawString("Wir stellen in Rechnung:");
+        content.newLine();
+        content.moveTextPositionByAmount(0, -30);
+        content.setFont(PDType1Font.HELVETICA, 12);
+        
+        for (int i = 0; i<ausgewaehlte.size(); i++){
+        float preis = Datenhaltung.PreisAuslesen(ausgewaehlte.get(i));
+        content.drawString(ausgewaehlte.get(i) +"      "+ preis);
+        
+        gesamtPreis = gesamtPreis + preis;
+        content.newLine();
+        content.moveTextPositionByAmount(0, -30);
+        }
+        
+        content.drawString("zuzahlen: "+ gesamtPreis + "€");
+        content.endText();
+        content.close();
+        doc.save(fileName); 
+        
+        doc.close();
+        
+        
+        
+        }
+        catch(Exception e){
+        System.out.println(e.getMessage());
+        }
+        
+
     }
 }

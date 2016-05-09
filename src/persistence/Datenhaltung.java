@@ -160,5 +160,32 @@ public static String[] ErstazteileAuslesen(){
      }
 		return null;
 	}
+public static float PreisAuslesen(String bezeichungen){
+	
+	float preis = 0;
+	try {
+    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder dBuilder;
+    dBuilder = dbFactory.newDocumentBuilder();
+	Document doc = dBuilder.parse(fileErstzteile);
+    doc.getDocumentElement().normalize();
+    NodeList ersatzteileList = doc.getElementsByTagName("ersatzteil");
+    for (int temp = 0; temp < ersatzteileList.getLength(); temp++) {
+		Node nNode = ersatzteileList.item(temp);	
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+			Element eElement = (Element) nNode;
+ 			if (eElement.getElementsByTagName("bezeichnung").item(0).getTextContent().contains(bezeichungen)){
+ 				String preisString = eElement.getElementsByTagName("preis").item(0).getTextContent();
+ 				preis = Float.parseFloat(preisString);
+ 			}
+		}
+	}
+
+	return (preis);
+} catch (Exception e) {
+    e.printStackTrace();
+ }
+	return preis;
+}
 
 }
