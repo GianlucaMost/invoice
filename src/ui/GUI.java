@@ -36,8 +36,8 @@ public class GUI{
 		hauptFrame.getContentPane().setLayout(null);
 		
 		//Erstellen Button hinzufügen
-		JButton btnNeueRechung = new JButton("neue Rechung");
-		btnNeueRechung.addActionListener(new ActionListener() {
+		JButton btnNeueRechnung = new JButton("neue Rechung");
+		btnNeueRechnung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hauptFrame.dispose();
 				ui.GUI gui = new GUI();
@@ -45,8 +45,8 @@ public class GUI{
 				
 			}
 		});
-		btnNeueRechung.setBounds(238, 443, 170, 29);
-		hauptFrame.getContentPane().add(btnNeueRechung);
+		btnNeueRechnung.setBounds(238, 443, 170, 29);
+		hauptFrame.getContentPane().add(btnNeueRechnung);
 
 		JButton hinzufuegenBT = new JButton("hinzufügen");
 		hinzufuegenBT.addActionListener(new ActionListener() {
