@@ -36,7 +36,7 @@ public class GUI{
 		hauptFrame.getContentPane().setLayout(null);
 		
 		//Erstellen Button hinzufügen
-		JButton btnNeueRechnung = new JButton("neue Rechung");
+		JButton btnNeueRechnung = new JButton("Neue Rechnung");
 		btnNeueRechnung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hauptFrame.dispose();
@@ -48,7 +48,7 @@ public class GUI{
 		btnNeueRechnung.setBounds(238, 443, 170, 29);
 		hauptFrame.getContentPane().add(btnNeueRechnung);
 
-		JButton hinzufuegenBT = new JButton("hinzufügen");
+		JButton hinzufuegenBT = new JButton("Hinzufügen");
 		hinzufuegenBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -65,7 +65,7 @@ public class GUI{
 
 
 		//Infos Kunde
-		JButton rechungErstellenBT = new JButton("Rechung erstellen");
+		JButton rechungErstellenBT = new JButton("Rechnung erstellen");
 		rechungErstellenBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				logic.Rechnung rechnung = new logic.Rechnung();
@@ -140,7 +140,7 @@ public class GUI{
 		JLabel kostenpunkteLB = new JLabel("Kostenpunkte:");
 		kostenpunkteLB.setBounds(270, 17, 101, 16);
 		
-		JButton btnLschen = new JButton("löschen");
+		JButton btnLschen = new JButton("Löschen");
 		btnLschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
