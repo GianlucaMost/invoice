@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gianlucamost on 30.05.16.
@@ -32,5 +34,22 @@ public class KundeDAOImpl implements KundeDAO {
             }
         }
         return ausgabe;
+    }
+
+    public String[] findAllCostumerNumbers() throws SQLException {
+        String sqlstmt = "SELECT kundennr FROM Kunde";
+
+        Connection conn = MySQLConnection.getInstance();
+        List<String> output = new ArrayList<String>();
+        if (conn != null) {
+            try (PreparedStatement pstmt = conn.prepareStatement(sqlstmt)) {
+                try (ResultSet resultSet = pstmt.executeQuery()) {
+                    while (resultSet.next()) {
+                        output.add(resultSet.getString("kundennr"));
+                    }
+                }
+            }
+        }
+        return output.toArray(new String[0]);
     }
 }

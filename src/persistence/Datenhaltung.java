@@ -27,9 +27,9 @@ import logic.Kunde;
 import logic.Kunden;
 
 public class Datenhaltung {
-	static File fileKunden = new File( "/Users/fabianspruch/fileKunden.xml");
-	static File fileAutos = new File( "/Users/fabianspruch/fileAutos.xml");
-	static File fileErstzteile = new File( "/Users/fabianspruch/fileErsatzteile.xml");
+	static File fileKunden = new File( "fileKunden.xml");
+	static File fileAutos = new File( "fileAutos.xml");
+	static File fileErstzteile = new File( "fileErsatzteile.xml");
 	static Kunde kunde1 = new Kunde("Mustermann", "Max", 123, "Musterstr.");
 	static Kunde kunde2 = new Kunde("Musterfrau", "Andrea", 124, "Musterstr.");
 	static Kunde kunde3 = new Kunde("Müller", "Klaus", 125, "Musterweg");

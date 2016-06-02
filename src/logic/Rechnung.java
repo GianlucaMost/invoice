@@ -10,6 +10,8 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import persistence.Datenhaltung;
+import persistence.ErsatzteilDAO;
+import persistence.ErsatzteilDAOImpl;
 
 import java.time.LocalDateTime;
 
@@ -48,7 +50,7 @@ public class Rechnung {
     public void print(String[] daten, DefaultListModel<String> ausgewaehlte) { 
 System.out.println("Create Simple PDF file with blank Page");
         
-        String fileName = "/Users/fabianspruch/"+LocalDateTime.now()+".pdf"; 
+        String fileName = "~"+LocalDateTime.now()+".pdf";
         float gesamtPreis=0;
         try{
         
@@ -78,14 +80,15 @@ System.out.println("Create Simple PDF file with blank Page");
         content.newLine();
         content.moveTextPositionByAmount(0, -30);
         content.setFont(PDType1Font.HELVETICA, 12);
-        
+            ErsatzteilDAO ed = new ErsatzteilDAOImpl();
         for (int i = 0; i<ausgewaehlte.size(); i++){
-        float preis = Datenhaltung.PreisAuslesen(ausgewaehlte.get(i));
-        content.drawString(ausgewaehlte.get(i) +"      "+ preis);
-        
-        gesamtPreis = gesamtPreis + preis;
-        content.newLine();
-        content.moveTextPositionByAmount(0, -30);
+//            float preis = Datenhaltung.PreisAuslesen(ausgewaehlte.get(i));
+            float preis = ed.findPriceFrom(ausgewaehlte.get(i));
+            content.drawString(ausgewaehlte.get(i) +"      "+ preis);
+
+            gesamtPreis = gesamtPreis + preis;
+            content.newLine();
+            content.moveTextPositionByAmount(0, -30);
         }
         
         content.drawString("zuzahlen: "+ gesamtPreis + "€");

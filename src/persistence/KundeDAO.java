@@ -7,4 +7,5 @@ import java.sql.SQLException;
  */
 public interface KundeDAO {
     public String[] findById(int id) throws SQLException;
+    public String[] findAllCostumerNumbers() throws SQLException;
 }

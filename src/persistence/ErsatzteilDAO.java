@@ -7,4 +7,6 @@ import java.sql.SQLException;
  */
 public interface ErsatzteilDAO {
     public String[] findById(int id) throws SQLException;
+    public String[] findAllCostumer() throws SQLException;
+    public float findPriceFrom(String bezeichnung) throws SQLException;
 }

@@ -12,9 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
-import persistence.Datenhaltung;
-import persistence.KundeDAO;
-import persistence.KundeDAOImpl;
+import persistence.*;
 
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
@@ -24,16 +22,21 @@ public class GUI{
 	JTextField vornameTF = new JTextField();
 	JTextField adresseTF = new JTextField();
 //	JComboBox kostenpunkteCB = new JComboBox(Datenhaltung.ErstazteileAuslesen());
-	JComboBox kostenpunkteCB = new JComboBox();
+	ErsatzteilDAO ed = new ErsatzteilDAOImpl();
+	JComboBox kostenpunkteCB = new JComboBox(ed.findAllCostumer());
 	DefaultListModel<String> ausgewaehlte = new DefaultListModel<>();
 	JList<String> ausgewählteLT = new JList<>(ausgewaehlte);
 	String daten[] = null;
 
 	
-	public GUI(){
-		erstellen();
+	public GUI() throws SQLException {
+		try {
+			erstellen();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	private void erstellen(){
+	private void erstellen() throws SQLException {
 		//Hauptfenster erstellen
 
 		JFrame hauptFrame = new JFrame();
@@ -46,9 +49,13 @@ public class GUI{
 		btnNeueRechnung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hauptFrame.dispose();
-				ui.GUI gui = new GUI();
+				try {
+					GUI gui = new GUI();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 
-				
+
 			}
 		});
 		btnNeueRechnung.setBounds(238, 443, 170, 29);
@@ -86,9 +93,9 @@ public class GUI{
 		JLabel kundennummerLB = new JLabel("Kundennummer:");
 		kundennummerLB.setBounds(6, 17, 114, 16);
 		hauptFrame.getContentPane().add(kundennummerLB);
-	
+		KundeDAO kd = new KundeDAOImpl();
 //		JComboBox kundennummerCB = new JComboBox(Datenhaltung.kundenNummernAuslesen());
-		JComboBox kundennummerCB = new JComboBox();
+		JComboBox kundennummerCB = new JComboBox(kd.findAllCostumerNumbers());
 
 		kundennummerCB.setSelectedIndex(-1);
 		kundennummerCB.addActionListener(new ActionListener() {
