@@ -8,5 +8,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="library" name="pdfbox-app-2.0.1" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.39-bin" level="project" />
   </component>
 </module>
