@@ -10,7 +10,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+
 import persistence.Datenhaltung;
+import persistence.KundeDAO;
+import persistence.KundeDAOImpl;
+
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
@@ -18,7 +23,8 @@ public class GUI{
 	JTextField nameTF = new JTextField();
 	JTextField vornameTF = new JTextField();
 	JTextField adresseTF = new JTextField();
-	JComboBox kostenpunkteCB = new JComboBox(Datenhaltung.ErstazteileAuslesen());
+//	JComboBox kostenpunkteCB = new JComboBox(Datenhaltung.ErstazteileAuslesen());
+	JComboBox kostenpunkteCB = new JComboBox();
 	DefaultListModel<String> ausgewaehlte = new DefaultListModel<>();
 	JList<String> ausgewählteLT = new JList<>(ausgewaehlte);
 	String daten[] = null;
@@ -81,14 +87,22 @@ public class GUI{
 		kundennummerLB.setBounds(6, 17, 114, 16);
 		hauptFrame.getContentPane().add(kundennummerLB);
 	
-		JComboBox kundennummerCB = new JComboBox(Datenhaltung.kundenNummernAuslesen());
+//		JComboBox kundennummerCB = new JComboBox(Datenhaltung.kundenNummernAuslesen());
+		JComboBox kundennummerCB = new JComboBox();
+
 		kundennummerCB.setSelectedIndex(-1);
 		kundennummerCB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
             	if (kundennummerCB.getSelectedItem() != null){
-            	daten = Datenhaltung.kundenAuslesen(Integer.parseInt(kundennummerCB.getSelectedItem().toString()));
-            	nameTF.setText(daten[0]);
+					try {
+//						daten = Datenhaltung.kundenAuslesen(Integer.parseInt(kundennummerCB.getSelectedItem().toString()));
+						KundeDAO kdao = new KundeDAOImpl();
+						daten = kdao.findById(Integer.parseInt(kundennummerCB.getSelectedItem().toString()));
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					nameTF.setText(daten[0]);
             	vornameTF.setText(daten[1]);
             	adresseTF.setText(daten[2]);
             	}

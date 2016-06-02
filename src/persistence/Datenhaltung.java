@@ -2,6 +2,7 @@ package persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Arrays;
 
 import javax.xml.bind.JAXBContext;
@@ -73,7 +74,32 @@ public class Datenhaltung {
 	}
 	
 	
-	public static String[] kundenAuslesen(int kundennummer){
+	public static String[] kundenAuslesen(int kundennummer) throws SQLException {
+		return null;
+/*
+
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql:localhost:3306/invoice", "root", "");
+			 PreparedStatement pstmt = connection.prepareStatement("SELECT name, vorname, addresse FROM Kunde WHERE id = ?")) {
+
+
+			pstmt.setInt(0, kundennummer);
+
+			try (ResultSet resultSet = pstmt.executeQuery()){
+				if (resultSet.next()) {
+					String ausgabe[] = new String[3];
+					ausgabe[0] = resultSet.getString("name");
+					ausgabe[1] = resultSet.getString("vorname");
+					ausgabe[2] = resultSet.getString("addresse");
+					return ausgabe;
+				} else {
+					return null;
+				}
+			}
+
+		}
+*/
+
+/*
 		String name = null;
 		String vorname = null;
 		String adresse = null;
@@ -105,6 +131,7 @@ public class Datenhaltung {
 	         e.printStackTrace();
 	      }
 		return null;
+*/
 	}
 	
 	public static String[] kundenNummernAuslesen(){
