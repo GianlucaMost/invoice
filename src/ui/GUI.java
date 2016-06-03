@@ -17,6 +17,9 @@ import persistence.*;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
+import logic.Drucker;
+import logic.PDFBox;
+
 public class GUI{
 	JTextField nameTF = new JTextField();
 	JTextField vornameTF = new JTextField();
@@ -81,7 +84,11 @@ public class GUI{
 		JButton rechungErstellenBT = new JButton("Rechnung erstellen");
 		rechungErstellenBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Drucker einDrucker = new Drucker();
+				PDFBox pdf = new PDFBox();
 				logic.Rechnung rechnung = new logic.Rechnung();
+				logic.Rechnung.anmelden(pdf);
+				logic.Rechnung.anmelden(einDrucker);
 				rechnung.print(daten, ausgewaehlte);
 				
 			}
