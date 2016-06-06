@@ -75,8 +75,8 @@ public class Datenhaltung {
 	
 	
 	public static String[] kundenAuslesen(int kundennummer) throws SQLException {
-		return null;
-/*
+		
+
 
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql:localhost:3306/invoice", "root", "");
 			 PreparedStatement pstmt = connection.prepareStatement("SELECT name, vorname, addresse FROM Kunde WHERE id = ?")) {
@@ -97,7 +97,7 @@ public class Datenhaltung {
 			}
 
 		}
-*/
+
 
 /*
 		String name = null;
@@ -134,33 +134,29 @@ public class Datenhaltung {
 */
 	}
 	
-	public static String[] kundenNummernAuslesen(){
+	public static String[] kundenNummernAuslesen() throws SQLException{
 		
 		
-		try {
-	    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder;
-        dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(fileKunden);
-        doc.getDocumentElement().normalize();
-        NodeList kundenList = doc.getElementsByTagName("kunde");
-        String kundenNummern[] = new String[kundenList.getLength()];
-        for (int temp = 0; temp < kundenList.getLength(); temp++) {
-    		Node nNode = kundenList.item(temp);	
-    		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-    			Element eElement = (Element) nNode;
-    			String kundennr =eElement.getElementsByTagName("kundennr").item(0).getTextContent();
-    			kundenNummern[temp]=kundennr;
-    		}
-    	}
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql:localhost:3306/invoice", "root", "");
+				 PreparedStatement pstmt = connection.prepareStatement("SELECT kundennr FROM Kunde")) {
 
-		return (kundenNummern);
-    } catch (Exception e) {
-        e.printStackTrace();
-     }
-		return null;
-	}
-	
+
+//				pstmt.setInt(0);
+
+				try (ResultSet resultSet = pstmt.executeQuery()){
+					if (resultSet.next()) {
+						String ausgabe[] = new String[3];
+						ausgabe[0] = resultSet.getString("kundennr");
+
+						return ausgabe;
+					} else {
+						return null;
+					}
+				}
+		}
+				
+
+			}
 public static String[] ErstazteileAuslesen(){
 		
 		

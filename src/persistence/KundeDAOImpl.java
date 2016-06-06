@@ -13,7 +13,7 @@ import java.util.List;
 public class KundeDAOImpl implements KundeDAO {
 
     public String[] findById(int id) throws SQLException {
-        String sqlstmt = "SELECT name, vorname, addresse FROM Kunde WHERE kundennr = ?";
+        String sqlstmt = "SELECT name, vorname, adresse FROM Kunde WHERE kundennr = ?";
 
         Connection conn = MySQLConnection.getInstance();
         String ausgabe[] = new String[3];
@@ -25,7 +25,7 @@ public class KundeDAOImpl implements KundeDAO {
                     if (resultSet.next()) {
                         ausgabe[0] = resultSet.getString("name");
                         ausgabe[1] = resultSet.getString("vorname");
-                        ausgabe[2] = resultSet.getString("addresse");
+                        ausgabe[2] = resultSet.getString("adresse");
                         return ausgabe;
                     } else {
                         return null;

@@ -15,7 +15,7 @@ import persistence.ErsatzteilDAOImpl;
 public class PDFBox implements AusgabeBeobachter {
 	
     @Override
-	 public void print(String[] daten, DefaultListModel<String> ausgewaehlte) { 
+	 public void print(String[] daten, DefaultListModel<String> ausgewaehlte, DefaultListModel<String> ausgewaehltesAuto) { 
 		 
 		         
 		         String fileName = "~"+LocalDateTime.now()+".pdf";

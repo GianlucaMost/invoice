@@ -44,7 +44,7 @@ public class Rechnung implements AusgabeBeobachter {
     static public void abmelden(AusgabeBeobachter beobachter){
     	alleBeobachter.remove(beobachter);
     	}
-    public void print(String[] daten, DefaultListModel<String> ausgewaehlte) { 
+    public void print(String[] daten, DefaultListModel<String> ausgewaehlte, DefaultListModel<String> ausgewaehltesAuto) { 
     	this.daten = daten;
     	this.ausgewaehlte = ausgewaehlte;
     	informiereBeobachter();

@@ -12,7 +12,7 @@ import java.sql.Statement;
  */
 public class MySQLConnection {
 
-    private static Connection conn = null;
+    static Connection conn = null;
 
     // Hostname
     private static String dbHost = "localhost";
@@ -27,9 +27,10 @@ public class MySQLConnection {
     private static String dbUser = "root";
 
     // Datenbankpasswort
-    private static String dbPassword = "";
+    private static String dbPassword = "root";
 
-    private MySQLConnection() {
+
+    MySQLConnection() {
         try {
 
             // Datenbanktreiber für ODBC Schnittstellen laden.
@@ -42,6 +43,8 @@ public class MySQLConnection {
             conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":"
                     + dbPort + "/" + database + "?" + "user=" + dbUser + "&"
                     + "password=" + dbPassword);
+            
+
         } catch (ClassNotFoundException e) {
             System.out.println("Treiber nicht gefunden");
         } catch (SQLException e) {

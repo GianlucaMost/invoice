@@ -1,5 +1,6 @@
 package ui;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.Component;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
@@ -30,6 +33,7 @@ public class GUI{
 	DefaultListModel<String> ausgewaehlte = new DefaultListModel<>();
 	JList<String> ausgewählteLT = new JList<>(ausgewaehlte);
 	String daten[] = null;
+	JComboBox combobox = new JComboBox();
 
 	
 	public GUI() throws SQLException {
@@ -110,15 +114,22 @@ public class GUI{
             	
             	if (kundennummerCB.getSelectedItem() != null){
 					try {
-//						daten = Datenhaltung.kundenAuslesen(Integer.parseInt(kundennummerCB.getSelectedItem().toString()));
+//						daten = Datenhaltung.kundenAuslesen();
 						KundeDAO kdao = new KundeDAOImpl();
 						daten = kdao.findById(Integer.parseInt(kundennummerCB.getSelectedItem().toString()));
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					nameTF.setText(daten[0]);
+				nameTF.setText(daten[0]);
             	vornameTF.setText(daten[1]);
             	adresseTF.setText(daten[2]);
+            	try {
+            		 
+            		combobox.setModel(new DefaultComboBoxModel(AutoDAOImpl.findByKunde(Integer.parseInt(kundennummerCB.getSelectedItem().toString()))));
+				} catch (SQLException e1) {
+					
+					e1.printStackTrace();
+				}
             	}
             	
             }
@@ -189,9 +200,10 @@ public class GUI{
 		autoLB.setBounds(6, 213, 61, 16);
 		hauptFrame.getContentPane().add(autoLB);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(6, 235, 176, 27);
-		hauptFrame.getContentPane().add(comboBox);
+		
+		
+		combobox.setBounds(6, 235, 176, 27);
+		hauptFrame.getContentPane().add(combobox);
 
 
 		hauptFrame.setVisible(true);

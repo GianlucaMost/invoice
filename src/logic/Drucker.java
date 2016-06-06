@@ -6,7 +6,7 @@ public class Drucker implements AusgabeBeobachter {
 
 	@Override
 	public void print(String[] daten, DefaultListModel<String> ausgewaehlte) {
-		System.out.println("Druck erfolgte");
+		System.out.println("Druck erfolgt.");
 
 	}
 

@@ -12,12 +12,13 @@ import java.sql.SQLException;
  */
 public class Start {
     public static void main(String [] args) throws JAXBException {
-//        KundeDAO knddoaimpl = new KundeDAOImpl();
-//        try {
-//            knddoaimpl.findById(1);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        KundeDAO knddoaimpl = new KundeDAOImpl();
+        try {
+            knddoaimpl.findAllCostumerNumbers();
+          
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     	logic.Steuerinformationen Infos = Steuerinformationen.getInfos();
         try {
             GUI window = new GUI();
